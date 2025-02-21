@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>早咖财经简报</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f0fa;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #936bba, #b491d9);
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 21h18v-2H2v2zm18-4H2v-2h18v2zM2 15h18v-2H2v2zm18-4H2V9h18v2zm0-4H2V5h18v2z'/%3E%3C/svg%3E");
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 21h18v-2H2v2zm18-4H2v-2h18v2zM2 15h18v-2H2v2zm18-4H2V9h18v2zm0-4H2V5h18v2z'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            opacity: 0.3;
+            animation: steam 3s infinite;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-top: 4px solid #936bba;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before, .header::after {
+            content: '☕';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: #936bba;
+            opacity: 0.6;
+        }
+        .header::before {
+            left: 20px;
+            animation: float-left 3s infinite;
+        }
+        .header::after {
+            right: 20px;
+            animation: float-right 3s infinite;
+        }
+        @keyframes float-left {
+            0%, 100% { transform: translateY(-50%) rotate(-15deg); }
+            50% { transform: translateY(-60%) rotate(-5deg); }
+        }
+        @keyframes float-right {
+            0%, 100% { transform: translateY(-50%) rotate(15deg); }
+            50% { transform: translateY(-60%) rotate(5deg); }
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-top: 4px solid #936bba;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #936bba, #b491d9);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(147, 107, 186, 0.5);
+            animation: steam 2s infinite;
+        }
+        h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #936bba;
+            font-size: 32px;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(147, 107, 186, 0.2);
+        }
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #936bba, #b491d9);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(147, 107, 186, 0.5);
+            animation: steam 2s infinite reverse;
+        }
+        @keyframes steam {
+            0% { transform: translateY(-50%) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-60%) scale(1.2); opacity: 0.5; }
+            100% { transform: translateY(-50%) scale(1); opacity: 0.8; }
+        }
+        .date-info {
+            color: #666;
+            font-size: 14px;
+        }
+        .news-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .news-item {
+            padding: 15px 0;
+            position: relative;
+            counter-increment: news-counter;
+            border-bottom: none;
+            margin-bottom: 15px;
+        }
+        .news-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(to right, transparent, #936bba, transparent);
+            border-radius: 0 0 15px 15px;
+            opacity: 0.3;
+        }
+        .news-item::before {
+            content: counter(news-counter);
+            position: absolute;
+            left: -30px;
+            top: 15px;
+            width: 24px;
+            height: 24px;
+            background-color: #936bba;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .news-title:hover {
+            color: #e60012;
+        }
+        .news-summary {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            position: relative;
+            padding-right: 100px;
+            margin-bottom: 10px;
+        }
+        .read-more-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #936bba;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .read-more-btn:hover {
+            background-color: #7d5a9e;
+        }
+        .news-source {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 12px;
+            color: #936bba;
+            background-color: #f5f0fa;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        .subscription-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-top: 4px solid #936bba;
+        }
+        .subscription-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .form-group label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        .form-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #936bba;
+            box-shadow: 0 0 5px rgba(147, 107, 186, 0.3);
+        }
+        .subscribe-btn {
+            background-color: #936bba;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .subscribe-btn:hover {
+            background-color: #7d5a9e;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .news-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            text-decoration: none;
+            font-weight: 500;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>早咖财经简报</h1>
+        <div class="date-info" id="dateInfo"></div>
+    </div>
+    <div class="news-container" id="newsContainer">
+        <!-- 新闻内容将通过JavaScript动态加载 -->
+    </div>
+    <div class="subscription-container">
+        <h2 style="color: #936bba; margin-top: 0;">订阅每日简报</h2>
+        <form class="subscription-form" id="subscriptionForm">
+            <div class="form-group">
+                <label for="name">姓名</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">电子邮箱</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">手机号码</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" required>
+            </div>
+            <button type="submit" class="subscribe-btn">立即订阅</button>
+        </form>
+    </div>
+
+    
+        
+        <script>
+            // 更新日期信息
+            function updateDateInfo() {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('zh-CN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'long'
+                });
+                document.getElementById('dateInfo').textContent = dateStr;
+            }
+
+            // 初始化页面
+            updateDateInfo();
+
+            // 更新新闻内容
+            document.getElementById('newsContainer').innerHTML = `
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html" target="_blank">央行：2024年1月金融市场运行总体平稳</a></h2>
+                <p class="news-summary">中国人民银行发布数据显示，1月份银行间货币市场利率保持基本稳定，债券市场发行和交易规模同比增长...</p>
+                <a href="http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.csrc.gov.cn/csrc/c100028/index.html" target="_blank">证监会：全面实行股票发行注册制一周年</a></h2>
+                <p class="news-summary">注册制改革一年来，市场运行总体平稳，改革效果逐步显现，促进资本市场高质量发展...</p>
+                <a href="http://www.csrc.gov.cn/csrc/c100028/index.html" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="https://www.ndrc.gov.cn/xwdt/" target="_blank">多部门联合发文支持民营经济发展</a></h2>
+                <p class="news-summary">国家发改委等部门发布政策文件，从融资、用地、人才等多方面支持民营经济发展壮大...</p>
+                <a href="https://www.ndrc.gov.cn/xwdt/" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.pbc.gov.cn/diaochatongjisi/116219/index.html" target="_blank">1月份社会融资规模增量为5.04万亿元</a></h2>
+                <p class="news-summary">央行数据显示，1月份社会融资规模增量为5.04万亿元，比上年同期多8768亿元...</p>
+                <a href="http://www.pbc.gov.cn/diaochatongjisi/116219/index.html" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.sse.com.cn/aboutus/mediacenter/news/" target="_blank">沪指震荡上行突破3000点</a></h2>
+                <p class="news-summary">A股市场延续反弹势头，沪指突破3000点整数关口，成交量明显放大，市场信心逐步恢复...</p>
+                <a href="http://www.sse.com.cn/aboutus/mediacenter/news/" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="https://www.opec.org/opec_web/en/press_room/" target="_blank">国际油价创近三个月新高</a></h2>
+                <p class="news-summary">受地缘政治风险和供需关系影响，国际油价持续上涨，布伦特原油期货价格创近三个月新高...</p>
+                <a href="https://www.opec.org/opec_web/en/press_room/" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.gov.cn/zhengce/index.htm" target="_blank">数字经济发展规划发布</a></h2>
+                <p class="news-summary">国务院印发《数字经济发展规划》，提出到2025年数字经济核心产业增加值占GDP比重达到10%的目标...</p>
+                <a href="http://www.gov.cn/zhengce/index.htm" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.stats.gov.cn/sj/" target="_blank">1月份CPI下降0.8%</a></h2>
+                <p class="news-summary">国家统计局公布数据显示，1月份全国居民消费价格指数（CPI）下降0.8%，环比上涨0.3%...</p>
+                <a href="http://www.stats.gov.cn/sj/" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.safe.gov.cn/safe/tjsj/index.html" target="_blank">外汇储备规模保持稳定</a></h2>
+                <p class="news-summary">截至1月末，我国外汇储备规模为31838亿美元，较上月末上升219亿美元，连续第三个月上升...</p>
+                <a href="http://www.safe.gov.cn/safe/tjsj/index.html" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>
+            <div class="news-item">
+                <h2 class="news-title"><a href="http://www.caam.org.cn/" target="_blank">新能源汽车出口快速增长</a></h2>
+                <p class="news-summary">1月份我国新能源汽车出口量同比增长约180%，出口市场进一步多元化，产品竞争力持续提升...</p>
+                <a href="http://www.caam.org.cn/" target="_blank" class="read-more-btn">阅读全文</a>
+            </div>`;
+        </script>
+</body>
+</html>
